@@ -12,11 +12,7 @@
 <body>
 
 <header>
-  <ul>
-  <a href="index.html"><li> Cars & Cars </li> </a>
-  <a href="products.html"> <li> Products </li> </a>
-  <a href="account.html"> <li> Account </li> </a>
-</ul>
+  <?php include'navigation.php'; ?>
 <container>
 </container>
 </header>
