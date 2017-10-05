@@ -5,7 +5,6 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/template.css"/>
    <title> Cars & Cars </title>
 </head>
 
@@ -25,8 +24,7 @@
 </smallotron>
 
 <footer>
-  <h3> Silas Stulz & Manuel Egli </h3>
-  <h3> 2017&copy; </h3>
+  <?php include'footer.php'; ?>
 </footer>
 </body>
 </html>
