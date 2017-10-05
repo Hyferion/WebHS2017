@@ -1,5 +1,5 @@
 body {
-  background-color: red;
+  background-color: lightblue;
 }
 
 h1 {
@@ -7,7 +7,7 @@ h1 {
 }
 
 footer {
-  background-color: red;
+  background-color: blue;
 }
 
 * {
@@ -26,3 +26,13 @@ footer {
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
+header ul {
+  list-style: none;
+  text-align: center;
+}
+
+header li {
+  display: inline;
+
+}
