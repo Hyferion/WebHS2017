@@ -1,13 +1,35 @@
 body {
-  background-color: lightblue;
+  margin-left: auto;
+  margin-right: auto;
+  background: url("../src/background.jpg");
+	background-size:cover
+}
+img{
+  width: 20%;
+  height:20%;
 }
 
 h1 {
   font-style: italic;
+  color:white;
+}
+h3{
+  font-style: italic;
+  color:white;
+}
+ul a {
+  color:red;
+  margin: 15px;
+}
+
+p{
+  color:white;
 }
 
 footer {
-  background-color: blue;
+  margin-top: 40%;
+  padding: 20px;
+  background:rgba(249, 249, 249, 0.7);
 }
 
 * {
@@ -30,9 +52,19 @@ footer {
 header ul {
   list-style: none;
   text-align: center;
+  display:inline-block;
+  margin:10px;
+  color:black;
 }
 
+nav{
+  padding: 20px;
+  background:rgba(249, 249, 249, 0.7);
+}
 header li {
   display: inline;
 
+}
+a:link {
+  text-decoration: none;
 }

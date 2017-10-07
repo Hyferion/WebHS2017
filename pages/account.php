@@ -9,13 +9,13 @@
 </head>
 
 <body>
-
+<nav>
 <header>
   <?php include'navigation.php'; ?>
 <container>
 </container>
 </header>
-
+</nav>
 <jumotron>
 <h1> NEWS & INFORMATION </h1>
 </jumbotron>
