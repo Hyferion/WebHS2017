@@ -51,19 +51,18 @@ footer {
 
 header ul {
   list-style: none;
-  text-align: center;
   display:inline-block;
-  margin:10px;
+  margin:0;
+  padding:0;
   color:black;
 }
 
 nav{
-  padding: 20px;
+  padding: 10px;
   background:rgba(249, 249, 249, 0.7);
 }
 header li {
   display: inline;
-
 }
 a:link {
   text-decoration: none;
