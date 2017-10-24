@@ -6,10 +6,27 @@
 <link rel="stylesheet" href="../css/w3c.css">
 <body>
 
+<?php
+$name = $email = $subject = $comment = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
+    $subject = test_input($_POST["subject"]);
+    $comment = test_input($_POST["comment"]);
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
-        <a href="#home" class="w3-bar-item w3-button"><b>CC</b> Cars & Cars</a>
+        <a href="index.php" class="w3-bar-item w3-button"><b>CC</b> Cars & Cars</a>
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
             <a href="./products.php" class="w3-bar-item w3-button">Shop</a>
@@ -24,7 +41,8 @@
     <img class="w3-image" src="../src/background.jpg" alt="Car" width="1500" height="800">
     <div class="w3-display-middle w3-margin-top w3-center">
         <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>CC</b>
-            </span> <span class="w3-hide-small w3-text-light-grey"> Cars & Cars</span></h1>
+            </span> <span class="w3-hide-small w3-text-light-grey" id="s"> Cars & Cars</span></h1>
+        <div style="color:red; font-size:20px;" id="formConf"> </div>
     </div>
 </header>
 
@@ -91,17 +109,16 @@
     <div class="w3-container w3-padding-32" id="contact">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
         <p>Lets get in touch and talk about your and our next dream car!</p>
-        <form action="/action_page.php" target="_blank">
-            <input class="w3-input" type="text" placeholder="Name" required name="Name">
-            <input class="w3-input w3-section" type="text" placeholder="Email" required name="Email">
-            <input class="w3-input w3-section" type="text" placeholder="Subject" required name="Subject">
-            <input class="w3-input w3-section" type="text" placeholder="Comment" required name="Comment">
+        <form action="action_form.php" method="post" onsubmit="confirmForm()">
+            <input class="w3-input" type="text" placeholder="Name" required name="name">
+            <input class="w3-input w3-section" type="text" placeholder="Email"  required name="email">
+            <input class="w3-input w3-section" type="text" placeholder="Subject" required name="subject">
+            <input class="w3-input w3-section" type="text" placeholder="Comment" required name="comment">
             <button class="w3-button w3-black w3-section" type="submit">
                 <i class="fa fa-paper-plane"></i> SEND MESSAGE
             </button>
         </form>
     </div>
-
     <!-- End page content -->
 </div>
 
