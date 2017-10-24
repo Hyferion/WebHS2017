@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Cars & Cars</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/w3c.css">
 <body>
 
-<!-- Navbar (sit on top) -->
+<!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
         <a href="#home" class="w3-bar-item w3-button"><b>CC</b> Cars & Cars</a>
@@ -23,7 +23,8 @@
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
     <img class="w3-image" src="../src/background.jpg" alt="Car" width="1500" height="800">
     <div class="w3-display-middle w3-margin-top w3-center">
-        <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>CC</b></span> <span class="w3-hide-small w3-text-light-grey"> Cars & Cars</span></h1>
+        <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>CC</b>
+            </span> <span class="w3-hide-small w3-text-light-grey"> Cars & Cars</span></h1>
     </div>
 </header>
 
@@ -31,7 +32,7 @@
 <div class="w3-content w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
-    <div class="w3-container w3-padding-32" id="projects">
+    <div class="w3-container w3-padding-32" id="news">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">NEWS</h3>
     </div>
 
@@ -39,25 +40,25 @@
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container">
                 <div class="w3-display-topleft w3-black w3-padding">New Ferrari F50</div>
-                <img src="../src/ferrari.jpg" alt="House" style="width:100%">
+                <img src="../src/ferrari.jpg" alt="Car" style="width:100%">
             </div>
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container">
                 <div class="w3-display-topleft w3-black w3-padding">Tobias is a pussy</div>
-                <img src="../src/car1.jpg" alt="House" style="width:100%">
+                <img src="../src/car1.jpg" alt="Car" style="width:100%">
             </div>
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container">
                 <div class="w3-display-topleft w3-black w3-padding">Something new</div>
-                <img src="../src/car2.jpg" alt="House" style="width:100%">
+                <img src="../src/car2.jpg" alt="Car" style="width:100%">
             </div>
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container">
                 <div class="w3-display-topleft w3-black w3-padding">Bla bla bla</div>
-                <img src="../src/car3.jpg" alt="House" style="width:100%">
+                <img src="../src/car3.jpg" alt="Car" style="width:100%">
             </div>
         </div>
     </div>
@@ -119,7 +120,7 @@
         myCenter=new google.maps.LatLng(47.142208, 7.244754);
         var mapOptions= {
             center:myCenter,
-            zoom:13, scrollwheel: false, draggable: false,
+            zoom:13, scrollwheel: true, draggable: false,
             mapTypeId:google.maps.MapTypeId.ROADMAP
         };
         var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
@@ -131,10 +132,5 @@
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP3rNovzb7KSWWP8B1T3eX6kw_YvOIvYI&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
 </body>
 </html>
