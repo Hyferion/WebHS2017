@@ -16,7 +16,7 @@
 </container>
 </header>
 </nav>
-<jumotron>
+<jumbotron>
 <h1> NEWS & INFORMATION </h1>
 </jumbotron>
 <smallotron>
