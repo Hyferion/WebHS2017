@@ -3,7 +3,7 @@
 <body>
 <?php
 echo "HALLO";
-$db = new mysqli("localhost","root","test123","carsandcars");
+$db = new mysqli("localhost:8889","root","test123","carscars");
 if ($db->connect_error) {
     echo ("Unable to connect to the database" .$db->connect_error);
 }
@@ -15,7 +15,7 @@ if (!$result = $db->query("SELECT * FROM products;")){
 }
 echo $result->num_rows. " Products: </br>";
 while($car = $result->fetch_assoc()){
-    echo $car["brand"]." " .$car["modell"]."<br />";
+    echo $car["brand"]." " .$car["model"]."<br />";
 }
 $db->close();
 ?>

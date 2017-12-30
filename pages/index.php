@@ -30,8 +30,7 @@ function test_input($data) {
         <!-- Float links to the right. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
             <a href="./products.php" class="w3-bar-item w3-button">Shop</a>
-            <a href="./account.php" class="w3-bar-item w3-button">Account</a>
-            <a href="#about" class="w3-bar-item w3-button">About</a>
+            <a href="./registration.php" class="w3-bar-item w3-button">Account</a>
         </div>
     </div>
 </div>
@@ -81,30 +80,6 @@ function test_input($data) {
         </div>
     </div>
 
-
-    <!-- About Section -->
-    <div class="w3-container w3-padding-32" id="about">
-        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
-        <p>Wir wollen der allerbeste sein, wie keiner vor mir war.. Dadadda, bereise ich das ganze Land, ich kenne die Gefaaaaaahr. POKEMON
-        </p>
-    </div>
-
-    <div class="w3-row-padding w3">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <img src="../src/silas.jpg" alt="" style="width:100%">
-            <h3>Silas Stulz</h3>
-            <p class="w3-opacity">Founder</p>
-            <p>Best OW Player EUW</p>
-            <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <img src="../src/manuel.jpg" alt="" style="width:100%">
-            <h3>Manuel Egli</h3>
-            <p class="w3-opacity">Founder</p>
-            <p>Worst OW Player EUW</p>
-            <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
-        </div>
-
     <!-- Contact Section -->
     <div class="w3-container w3-padding-32" id="contact">
         <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
@@ -127,7 +102,7 @@ function test_input($data) {
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-    Silas Stulz & Manuel Egli <?php echo date('Y') ?>
+    Silas Stulz <?php echo date('Y') ?>
 </footer>
 
 <!-- Add Google Maps -->

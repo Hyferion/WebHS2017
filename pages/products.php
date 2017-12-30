@@ -1,90 +1,56 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-   <title> Cars & Cars </title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
+	<title> Cars & Cars </title>
 </head>
-
 <body>
-<nav>
 <header>
-<?php include'navigation.php'; ?>
-<container>
-</container>
+	<?php include 'navigation.php'; ?>
 </header>
-</nav>
-<jumotron>
-  <ul>
-    <li>
-<h1>  VW Tiguan </h1>
-</jumbotron>
-<smallotron>
-  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-  <h3> Price: 30000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Audi Q5 </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 60000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  BMW X6 </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 56000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Cadillac Escalade </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 120000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Audi A4 </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 53000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Ford Kuga </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 32000.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Citroen C4 Cactus </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 27900.- </h3>
-</smallotron>
-</li>
-<li>
-<h1>  Dacia Logan </h1>
-</jumbotron>
-<smallotron>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-<h3> Price: 13000.- </h3>
-</smallotron>
-</li>
-</ul>
+<main>
+	<?php
+
+	$db = new mysqli("localhost:8889", "root", "test123", "carscars");
+	if ($db->connect_error) {
+		echo("Unable to connect to the database" . $db->connect_error);
+	}
+
+	if (!$result = $db->query("SELECT * FROM products;")) {
+		echo("There was an error connecting to the db");
+	}
+	while ($car = $result->fetch_assoc()) {
+		$products[$car['id']] = array(
+			'brand' => $car ['brand'],
+			'model' => $car ['model'],
+			'price' => $car ['price'],
+			'type' => $car['type']
+		);
+	}
+	$db->close();
+
+	echo "
+	<table style='margin-top: 50px'>";
+	foreach ($products as $id => $product) {
+		echo "
+		<tr>
+			<td><a href='./item.php?id=$id'> Marke: " . $product['brand'] . "</a></td>
+			<td>Model: " . $product['model'] . "</td>
+			<td>Kategorie: " . $product['type'] . "</td>
+			.
+			<td>Preis: " . $product['price'] . "</td>
+		</tr>
+		";
+	}
+	echo "
+	</table>
+	";
+	echo "<a href='./shoppingcart.php'> Cart </a>" ?>
+</main>
 <footer>
-  <?php include'footer.php'; ?>
+	<?php include 'footer.php'; ?>
 </footer>
 </body>
 </html>

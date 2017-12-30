@@ -1,2 +1,3 @@
-<h3> Silas Stulz & Manuel Egli </h3>
-<h3> 2017&copy; </h3>
+<footer class="w3-center w3-black w3-padding-16">
+	Silas Stulz <?php echo date('Y') ?>
+</footer>
