@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
-	<title> Cars & Cars </title>
-</head>
-
-<body>
-<header>
-	<?php include'navigation.php'; ?>
-</header>
 <?php
 session_start();
+
 $db = new mysqli("localhost:8889", "root", "test123", "carscars");
+if ($db->connect_error) {
+	echo("Unable to connect to the database" . $db->connect_error);
+}
 
 if(isset($_GET['login'])) {
 	$email = $_POST['email'];
 	$passwort = $_POST['passwort'];
 
-	$statement = $db->prepare("SELECT * FROM users WHERE email = :email");
-	$result = $statement->execute(array('email' => $email));
-	$user = $statement->fetch();
+	if (!$result = $db->query("SELECT * FROM users WHERE email ='".$email."';")){
+		echo("There was an error connecting to the db");
+	} else {
+		$user = $result->fetch_assoc();
+
+	}
 
 	//Überprüfung des Passworts
 	if ($user !== false && password_verify($passwort, $user['passwort'])) {
 		$_SESSION['userid'] = $user['id'];
-		die('Login erfolgreich. Weiter zu <a href="account.php.php">internen Bereich</a>');
+
+		header("Location: ./account.php");
 	} else {
 		$errorMessage = "E-Mail oder Passwort war ungültig<br>";
 	}
@@ -37,7 +31,10 @@ if(isset($_GET['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
+	<title> Cars & Cars </title>
 </head>
 <body>
 

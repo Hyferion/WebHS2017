@@ -1,15 +1,19 @@
 <?php
 session_start();
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Registrierung</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
+	<title> Cars & Cars </title>
 </head>
-<body>
+<body style="margin-top: 60px">
+
 
 <?php
+include_once 'navigation.php';
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
 
 if(isset($_GET['register'])) {
@@ -19,7 +23,14 @@ if(isset($_GET['register'])) {
 	$passwort2 = $_POST['passwort2'];
 	$surname = $_POST['surname'];
 	$lastname = $_POST['lastname'];
+	$adress = $_POST['adress'];
+	$zip = $_POST['zip'];
+	$city = $_POST['city'];
 
+	$db = new mysqli("localhost:8889", "root", "test123", "carscars");
+	if ($db->connect_error) {
+		echo("Unable to connect to the database" . $db->connect_error);
+	}
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
@@ -51,14 +62,15 @@ if(isset($_GET['register'])) {
 	if(!$error) {
 		$passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 
-		$sql = "INSERT INTO users (email, passwort,vorname,nachname) VALUES ($email,$passwort_hash,$surname,$lastname)";
+
+		$sql = "INSERT INTO users (email, passwort,vorname,nachname,adress,zip,city) VALUES ('$email','$passwort_hash','$surname','$lastname','$adress','$zip','$city')";
 
 
 		if(!$result = $db->query($sql)) {
+			echo("There was an error connecting to the db");
+		} else {
 			echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
 			$showFormular = false;
-		} else {
-			echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
 		}
 	}
 }
@@ -67,18 +79,30 @@ if($showFormular) {
 	?>
 
 	<form action="?register=1" method="post">
-		Vorname: <br>
-		<input type="text" size="40" maxlength="250" name="surname"><br>
-		Nachname: <br>
-		<input type="text" size="40" maxlength="250" name="lastname"><br>
 		E-Mail:<br>
-		<input type="email" size="40" maxlength="250" name="email"><br><br>
+		<input type="email" size="40" maxlength="250" name="email"><br>
 
 		Dein Passwort:<br>
 		<input type="password" size="40"  maxlength="250" name="passwort"><br>
 
 		Passwort wiederholen:<br>
-		<input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+		<input type="password" size="40" maxlength="250" name="passwort2"><br>
+
+		Vorname: <br>
+		<input type="text" size="40" maxlength="250" name="surname"><br>
+
+		Nachname: <br>
+		<input type="text" size="40" maxlength="250" name="lastname"><br>
+
+		Adresse: <br>
+		<input type="text" size="40" name="adress"> <br>
+
+		Postleihzahl: <br>
+		<input type="number" size="40" maxlength="250" name="zip"> <br>
+
+		Ort: <br>
+		<input type="text" size="40" maxlength="250" name="city"> <br>
+
 
 		<input type="submit" value="Abschicken">
 	</form>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +29,8 @@
 			'brand' => $car ['brand'],
 			'model' => $car ['model'],
 			'price' => $car ['price'],
-			'type' => $car['type']
+			'type' => $car['type'],
+			'imgRef' => $car['imgRef']
 		);
 	}
 	$db->close();
@@ -41,6 +45,7 @@
 			<td>Kategorie: " . $product['type'] . "</td>
 			.
 			<td>Preis: " . $product['price'] . "</td>
+			<td> <img src=".$product['imgRef']." style='width:256px; height:256px;'> </td>
 		</tr>
 		";
 	}

@@ -32,7 +32,8 @@ if(isset($_GET['id'])) {
 			'brand' => $car ['brand'],
 			'model' => $car ['model'],
 			'price' => $car ['price'],
-			'type' => $car['type']
+			'type' => $car['type'],
+			'imgRef' => $car ['imgRef']
 		);
 	}
 	$db->close();
@@ -43,6 +44,7 @@ echo "<table style='margin-top: 50px'>";
 		<td>Model: ".$products[$id]['model']."</td>
 		<td>Kategorie: ".$products[$id]['category']."</td>.
 		<td>Preis: ".$products[$id]['price']."</td>
+		<td> <img src=".$products[$id]['imgRef']."></td>
 		<td> <form action=\"shoppingcart.php?item_id=".$id."\" method=\"post\">
 		<select name='quantity'>
 		<option value='1'>1</option>

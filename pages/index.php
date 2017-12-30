@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <title>Cars & Cars</title>
@@ -24,16 +27,7 @@ function test_input($data) {
 ?>
 
 <!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
-        <a href="index.php" class="w3-bar-item w3-button"><b>CC</b> Cars & Cars</a>
-        <!-- Float links to the right. Hide them on small screens -->
-        <div class="w3-right w3-hide-small">
-            <a href="./products.php" class="w3-bar-item w3-button">Shop</a>
-            <a href="./registration.php" class="w3-bar-item w3-button">Account</a>
-        </div>
-    </div>
-</div>
+<?php include_once ('navigation.php');?>
 
 <!-- Header -->
 <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
@@ -62,7 +56,7 @@ function test_input($data) {
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom">
             <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Tobias is a pussy</div>
+                <div class="w3-display-topleft w3-black w3-padding">News</div>
                 <img src="../src/car1.jpg" alt="Car" style="width:100%">
             </div>
         </div>

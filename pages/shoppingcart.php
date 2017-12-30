@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
-	<title> Cars & Cars </title>
-</head>
-
-<body>
-<header>
-	<?php include'navigation.php'; ?>
-</header>
 <?php
 require_once '../cart.php';
 // Start session
@@ -26,17 +12,19 @@ $cart = $_SESSION["cart"];
 if (isset($_GET["item_id"])) {
 	$cart->addItem($_GET["item_id"], $_POST["quantity"]);
 }
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
-<head><!-- ... --></head>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
+	<title> Cars & Cars </title>
+</head>
 <body>
 <h4>Your Shopping Cart:</h4>
 <?php
-
+include_once 'navigation.php';
 // Render cart explicitly to enhence it
 if ($cart->isEmpty()) {
 	echo "<div class=\"cart empty\">[Empty Cart]</div>";
@@ -72,7 +60,8 @@ if ($cart->isEmpty()) {
 
 	$db->close();
 }
-echo "<a href='./products.php'> Products </a>"
+echo "<a href='./products.php'> Products </a>";
+echo "<a href='./checkout.php'> Checkout </a>"
 ?>
 </body>
 </html>
