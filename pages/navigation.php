@@ -6,6 +6,15 @@ if (!isset($_SESSION["cart"])) {
 // Get cart from session
 $cart = $_SESSION["cart"];
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
+	<title> Cars & Cars </title>
+</head>
+<body>
 <div class="w3-top">
 	<div class="w3-bar w3-white w3-wide w3-padding w3-card-2">
 		<a href="index.php" class="w3-bar-item w3-button"><b>CC</b> Cars & Cars</a>
@@ -23,3 +32,4 @@ $cart = $_SESSION["cart"];
 		</div>
 	</div>
 </div>
+</body>

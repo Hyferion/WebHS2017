@@ -11,10 +11,15 @@ session_start();
 </head>
 <body>
 <header>
-	<?php include 'navigation.php'; ?>
+	<?php //include 'navigation.php'; ?>
 </header>
 <main>
 	<?php
+	echo "<a style='margin-top: 30px;' href='?SUV=1'> SUV </a>";
+
+	if (isset($_GET['SUV'])){
+		$sort = 'SUV';
+	}
 
 	$db = new mysqli("localhost:8889", "root", "test123", "carscars");
 	if ($db->connect_error) {
@@ -25,14 +30,27 @@ session_start();
 		echo("There was an error connecting to the db");
 	}
 	while ($car = $result->fetch_assoc()) {
-		$products[$car['id']] = array(
-			'brand' => $car ['brand'],
-			'model' => $car ['model'],
-			'price' => $car ['price'],
-			'type' => $car['type'],
-			'imgRef' => $car['imgRef']
-		);
-	}
+		if ($sort != NULL) {
+			if ($car['type'] == $sort) {
+				$products[$car['id']] = array(
+					'brand' => $car ['brand'],
+					'model' => $car ['model'],
+					'price' => $car ['price'],
+					'type' => $car['type'],
+					'imgRef' => $car['imgRef']
+				);
+			}
+		}
+		else {
+			$products[$car['id']] = array(
+				'brand' => $car ['brand'],
+				'model' => $car ['model'],
+				'price' => $car ['price'],
+				'type' => $car['type'],
+				'imgRef' => $car['imgRef']
+			);
+		}
+		}
 	$db->close();
 
 	echo "
@@ -52,7 +70,7 @@ session_start();
 	echo "
 	</table>
 	";
-	echo "<a href='./shoppingcart.php'> Cart </a>" ?>
+	?>
 </main>
 <footer>
 	<?php include 'footer.php'; ?>

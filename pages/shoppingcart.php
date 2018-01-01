@@ -60,7 +60,6 @@ if ($cart->isEmpty()) {
 
 	$db->close();
 }
-echo "<a href='./products.php'> Products </a>";
 echo "<a href='./checkout.php'> Checkout </a>"
 ?>
 </body>
