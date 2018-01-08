@@ -1,122 +1,205 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<title>Cars & Cars</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/w3c.css">
-<body>
+
+?><!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Cars</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../plugins/slick-carousel/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="../plugins/slick-carousel/slick/slick-theme.css"/>
+	<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body id="body">
 
 <?php
-$name = $email = $subject = $comment = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $name = test_input($_POST["name"]);
-    $email = test_input($_POST["email"]);
-    $subject = test_input($_POST["subject"]);
-    $comment = test_input($_POST["comment"]);
-}
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+include_once 'header.php';
 ?>
 
-<!-- Navbar -->
-<?php include_once ('navigation.php');?>
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-    <img class="w3-image" src="../src/background.jpg" alt="Car" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-        <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>CC</b>
-            </span> <span class="w3-hide-small w3-text-light-grey" id="s"> Cars & Cars</span></h1>
-        <div style="color:red; font-size:20px;" id="formConf"> </div>
-    </div>
-</header>
+<!-- Main Menu Section -->
+<section class="menu">
+	<nav class="navbar navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<h2 class="menu-title">Main Menu</h2>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
-<!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+			</div><!-- / .navbar-header -->
 
-    <!-- Project Section -->
-    <div class="w3-container w3-padding-32" id="news">
-        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">NEWS</h3>
-    </div>
+			<!-- Navbar Links -->
+			<div id="navbar" class="navbar-collapse collapse text-center">
+				<ul class="nav navbar-nav">
 
-    <div class="w3-row-padding">
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">New Ferrari F50</div>
-                <img src="../src/ferrari.jpg" alt="Car" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">News</div>
-                <img src="../src/car1.jpg" alt="Car" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Something new</div>
-                <img src="../src/car2.jpg" alt="Car" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
-            <div class="w3-display-container">
-                <div class="w3-display-topleft w3-black w3-padding">Bla bla bla</div>
-                <img src="../src/car3.jpg" alt="Car" style="width:100%">
-            </div>
-        </div>
-    </div>
+					<!-- Home -->
+					<li class="dropdown ">
+						<a href="">Home</a>
+					</li><!-- / Home -->
 
-    <!-- Contact Section -->
-    <div class="w3-container w3-padding-32" id="contact">
-        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
-        <p>Lets get in touch and talk about your and our next dream car!</p>
-        <form action="action_form.php" method="post" onsubmit="confirmForm()">
-            <input class="w3-input" type="text" placeholder="Name" required name="name">
-            <input class="w3-input w3-section" type="text" placeholder="Email"  required name="email">
-            <input class="w3-input w3-section" type="text" placeholder="Subject" required name="subject">
-            <input class="w3-input w3-section" type="text" placeholder="Comment" required name="comment">
-            <button class="w3-button w3-black w3-section" type="submit">
-                <i class="fa fa-paper-plane"></i> SEND MESSAGE
-            </button>
-        </form>
-    </div>
-    <!-- End page content -->
+
+					<!-- Elements -->
+					<li>
+						<a href="products.php">Shop</a>
+					</li><!-- / Elements -->
+					<!-- Elements -->
+					<li>
+						<a href="contact.php">Contact</a>
+					</li><!-- / Elements -->
+
+				</ul><!-- / .nav .navbar-nav -->
+
+			</div><!--/.navbar-collapse -->
+		</div><!-- / .container -->
+	</nav>
+</section>
+
+
+<div class="home-slider">
+	<div>
+		<div class="slider-item dark-bg" style="background-image:url('../src/background.jpg')">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="slide-inner text-left">
+							<h1>Ford Mustang GT</h1>
+							<p>Now with 500 ps</p>
+							<a href="" class="btn btn-main">Buy Now</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </div>
+<section class="product-category section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title text-center">
+					<h2>News</h2>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box">
+					<a href="">
+						<img src="../src/car4.jpg" alt="" />
+						<div class="content">
+							<h3 style="color: #FFFFFF;">AMG</h3>
+							<p style="color: #FFFFFF;">It's fast it's new</p>
+						</div>
+					</a>
+				</div>
+				<div class="category-box">
+					<a href="">
+						<img src="../src/car3.jpg" alt="" />
+						<div class="content">
+							<h3 style="color: #FFFFFF;">Ford Mustang</h3>
+							<p style="color: #FFFFFF;">Now available again in black!</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="category-box category-box-2">
+					<a href="">
+						<img src="../src/car1.jpg" alt="" />
+						<div class="content">
+							<h3 style="color: #FFFFFF;">Jaguar</h3>
+							<p style="color: #FFFFFF;">Drive with style</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-<!-- Google Map -->
-<div id="googleMap" class="w3-aqua" style="width:100%;height:450px;"></div>
+<section class="products section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="title text-center">
+				<h2>Best Sellers</h2>
+			</div>
+		</div>
+		<div class="row">
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-    Silas Stulz <?php echo date('Y') ?>
-</footer>
+			<div class="col-md-4">
+				<div class="product-item">
+					<div class="product-thumb">
+						<span class="bage">Sale</span>
+						<img class="img-responsive" src="images/shop/products/product-1.jpg" alt="product-img" />
+						<div class="preview-meta">
+							<ul>
+								<li>
+									<span  data-toggle="modal" data-target="#product-modal">
+										<i class="tf-ion-ios-search-strong"></i>
+									</span>
+								</li>
+								<li>
+									<a href=""><i class="tf-ion-android-cart"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-content">
+						<h4><a href="product-single.html">Reef Boardsport</a></h4>
+						<p class="price">$200</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-<!-- Add Google Maps -->
-<script>
-    function myMap()
-    {
-        myCenter=new google.maps.LatLng(47.142208, 7.244754);
-        var mapOptions= {
-            center:myCenter,
-            zoom:13, scrollwheel: true, draggable: false,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
-        var marker = new google.maps.Marker({
-            position: myCenter,
-        });
-        marker.setMap(map);
-    }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP3rNovzb7KSWWP8B1T3eX6kw_YvOIvYI&callback=myMap"></script>
+<section class="call-to-action bg-gray section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<div class="title">
+					<h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
+				</div>
+				<div class="col-lg-6 col-md-offset-3">
+					<div class="input-group subscription-form">
+						<input type="text" class="form-control" placeholder="Enter Your Email Address">
+						<span class="input-group-btn">
+				        <button class="btn btn-main" type="button">Subscribe Now!</button>
+				      </span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<?php
+include_once 'footer.php';
+?>
+
+
+<script src="https://code.jquery.com/jquery-git.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../plugins/slick-carousel/slick/slick.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYpkJWR07RJEJ_fKv0kpSStIj_VXGrGzA&callback=initMap"></script>
+<script src="../js/script.js"></script>
+
+
+
 </body>
 </html>

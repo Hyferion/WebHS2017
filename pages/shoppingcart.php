@@ -12,6 +12,7 @@ $cart = $_SESSION["cart"];
 if (isset($_GET["item_id"])) {
 	$cart->addItem($_GET["item_id"], $_POST["quantity"]);
 }
+var_dump($_POST['product-quantity']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@ if (isset($_GET["item_id"])) {
 <body>
 <h4>Your Shopping Cart:</h4>
 <?php
-include_once 'navigation.php';
+//include_once 'navigation.php';
 // Render cart explicitly to enhence it
 if ($cart->isEmpty()) {
 	echo "<div class=\"cart empty\">[Empty Cart]</div>";
