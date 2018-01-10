@@ -14,7 +14,7 @@ if ($db->connect_error) {
 }
 $sql = "Select * from users where id = " . $usrid . "";
 if (!$result = $db->query($sql)) {
-	echo("There was an error connecting to the db");
+	header("Location: ./login.php");
 }
 while ($persons = $result->fetch_assoc()) {
 	$person = array(
@@ -33,7 +33,7 @@ foreach ($cart->getItems() as $item => $num) {
 }
 
 if (!$result = $db->query("SELECT * FROM products WHERE id IN (" . implode(',', $ids) . ")")) {
-	echo("There was an error connecting to the db");
+	echo("There was an error csonnecting to the db");
 }
 while ($car = $result->fetch_assoc()) {
 	$products[$car['id']] = array(

@@ -69,8 +69,10 @@
 </head>
 <body>
 <div class="search-box">
-	<input type="text" autocomplete="off" placeholder="Search..." />
-	<div class="result"></div>
+	<form class="w3-left" action="item.php" method="post">
+	<input name="search" class="w3-input w3-border w3-padding" type="text" autocomplete="off" placeholder="Search..." />
+	<div style="background-color: black; color: white"  class="result"></div>
+	</form>
 </div>
 </body>
 </html>

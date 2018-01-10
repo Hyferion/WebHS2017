@@ -4,11 +4,33 @@ if (!isset($_SESSION['userid'])) {
 }
 
 $usrid = $_SESSION['userid'];
-
 $db = new mysqli("localhost:8889", "root", "test123", "carscars");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
 }
+
+if (isset($_GET['edit'])){
+	$edit = true;
+}
+
+if(isset($_GET['edited'])){
+	$email = $_POST['email'];
+	$surname = $_POST['surname'];
+	$lastname = $_POST['lastname'];
+	$adress = $_POST['adress'];
+	$zip = $_POST['zip'];
+	$city = $_POST['city'];
+
+
+
+	if (!$result = $db->query("UPDATE users set email = '$email', vorname = '$surname' , nachname = '$lastname', adress = '$adress', zip = '$zip', city = '$city' WHERE id = $usrid")) {
+		echo("There was an error connecting to the db");
+	}
+}
+
+
+
+
 
 if (!$result = $db->query("SELECT email,vorname,nachname,adress,city,zip FROM users WHERE id =" . $usrid . ";")) {
 	echo("There was an error connecting to the db");
@@ -52,8 +74,35 @@ include_once "header.php"; ?>
 <!-- Product grid -->
 <div class="w3-row w3-grayscale">
 	<?php
+	if ($edit){
+		echo "<form class=\"w3-container\" action=\"?edited=1\" method=\"post\">
+	<label  class=\"w3-text-black\"><b>Email:</b></label>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"email\" name=\"email\" value='" . $user['email'] . "'>
+
+	<div style=\"margin-top:3%\"><label  class=\"w3-text-black\"><b>Vorname:</b></label></div>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"text\" name=\"surname\"  value='" . $user['vorname'] . "'>
+
+	<div style=\"margin-top:3%\"><label  class=\"w3-text-black\"><b>Nachname:</b></label></div>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"text\" name=\"lastname\"  value='" . $user['nachname'] . "'>
+
+	<div style=\"margin-top:3%\"><label  class=\"w3-text-black\"><b>Adress:</b></label></div>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"text\" name=\"adress\"  value='" . $user['adress'] . "'>
+
+	<div style=\"margin-top:3%\"><label  class=\"w3-text-black\"><b>ZIP:</b></label></div>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"number\" name=\"zip\"  value='" . $user['city'] . "'>
+
+	<div style=\"margin-top:3%\"><label  class=\"w3-text-black\"><b>City:</b></label></div>
+	<input style=\"margin-top:3%\" class=\"w3-input w3-border w3-light-grey\" type=\"text\" name=\"city\"  value='" . $user['zip'] . "'>
+
+	<input style=\"margin-top:3%\" class=\"w3-btn w3-black\" type=\"submit\" value=\"Update\">
+</form>";
+	}
+	else{
+
 	echo "
-	<table style='margin-top: 50px'>";
+<a style='text-decoration:none;' href='account.php?edit'>
+	<table style='margin-top: 50px'>
+	<h4>Click to edit!</h4>";
 	echo "
 		<tr>
 			<td> Email: " . $user['email'] . "</td></tr>
@@ -67,8 +116,8 @@ include_once "header.php"; ?>
 			<td> Stadt: " . $user['city'] . "</td></tr>
 			<tr>
 			<td> Postleihzahl: " . $user['zip'] . "</td></tr>
-	</table>
-		";
+	</table></a>
+		";}
 	?>
 	</container>
 	<orders>

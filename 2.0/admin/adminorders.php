@@ -27,7 +27,7 @@ if(isset($_GET['edited'])){
 	$total = $_POST['total'];
 
 
-	if (!$result = $db->query("UPDATE orders set usrid = '$usrid', items = '$items' , total = '$total' WHERE id = $id")) {
+	if (!$result = $db->query("UPDATE orders set usrid = '$usrid', total = '$total' WHERE id = $id")) {
 		echo("There was an error connecting to the db");
 	}
 }
@@ -43,7 +43,7 @@ if(isset($_GET['added'])){
 	$total = $_POST['total'];
 
 
-	if (!$result = $db->query("INSERT INTO orders (usrid,items, total) VALUES ($usrid,'$items',$total)")) {
+	if (!$result = $db->query("INSERT INTO orders (usrid,items, total) VALUES ($usrid,$total)")) {
 		echo("There was an error connecting to the db");
 	}
 }
@@ -72,7 +72,6 @@ if($edit) {
 
 	echo "<form action=\"?edited=".$id."\" method=\"post\">
 		usrid:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$orders[$id]['usrid']."\" name=\"usrid\"><br>
-		 Items: <br><input type=\"text\" size=\"40\" maxlength=\"250\" name=\"items\" value=\" ".$orders[$id]['items']."\"><br>
 		 Total:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$orders[$id]['total']."\" name=\"total\"><br>
 		 <input type=\"submit\" value=\"Abschicken\">
 	</form>";

@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if (isset($_GET['registered'])){
+	$registered = true;
+}
+
 $db = new mysqli("localhost:8889", "root", "test123", "carscars");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
@@ -50,12 +54,23 @@ if(isset($_GET['login'])) {
 <!-- Sidebar/menu -->
 <?php include_once 'sidebar.php' ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once 'header.php';
 
-<div style="margin:2%" class="w3-container w3-black">
-	<h2>Please Login to continue</h2>
-</div>
-
+if (!$registered) {
+	?>
+	<div style="margin:2%" class="w3-container w3-black">
+		<h2>Please Login to continue</h2>
+	</div>
+	<?php
+}
+else {
+	?>
+	<div style="margin:2%" class="w3-container w3-black">
+		<h2>Your Registration was successful! Please Login!</h2>
+	</div>
+	<?php
+}
+?>
 <form class="w3-container" action="?login=1" method="post">
 	<label  class="w3-text-black"><b>Email:</b></label>
 	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="email" name="email">

@@ -1,18 +1,7 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="../css/w3c.css"/>
-	<title> Cars & Cars </title>
-</head>
-<body style="margin-top: 60px">
 
 
-<?php
 include_once 'navigation.php';
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
 
@@ -75,7 +64,6 @@ if(isset($_GET['register'])) {
 	}
 }
 
-if($showFormular) {
 	?>
 
 	<form action="?register=1" method="post">
@@ -106,10 +94,6 @@ if($showFormular) {
 
 		<input type="submit" value="Abschicken">
 	</form>
-
-	<?php
-} //Ende von if($showFormular)
-?>
 
 </body>
 </html>

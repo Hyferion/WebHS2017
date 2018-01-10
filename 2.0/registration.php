@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-$showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
-
 if(isset($_GET['register'])) {
 	$error = false;
 	$email = $_POST['email'];
@@ -20,15 +18,15 @@ if(isset($_GET['register'])) {
 	}
 
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+		$errormsg = 'Bitte eine gültige E-Mail-Adresse eingeben';
 		$error = true;
 	}
 	if(strlen($passwort) == 0) {
-		echo 'Bitte ein Passwort angeben<br>';
+		$errormsg = 'Bitte ein Passwort angeben';
 		$error = true;
 	}
 	if($passwort != $passwort2) {
-		echo 'Die Passwörter müssen übereinstimmen<br>';
+		$errormsg = 'Die Passwörter müssen übereinstimmen';
 		$error = true;
 	}
 	/*
@@ -56,7 +54,7 @@ if(isset($_GET['register'])) {
 		if(!$result = $db->query($sql)) {
 			echo("There was an error connecting to the db");
 		} else {
-			echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+			header("Location: ./login.php?registered");
 			$showFormular = false;
 		}
 	}
@@ -91,7 +89,12 @@ if(isset($_GET['register'])) {
 <div style="margin:2%" class="w3-container w3-black">
 	<h2>Please Register to continue</h2>
 </div>
+<div style="margin:2%">
+<?php
 
+echo $errormsg;
+?>
+</div>
 <form class="w3-container" action="?register=1" method="post">
 	<label  class="w3-text-black"><b>Email:</b></label>
 	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="email" name="email">

@@ -11,19 +11,21 @@
 <div class="w3-main" style="margin-left:250px">
 	<!-- Push down content on small screens -->
 	<div class="w3-hide-large" style="margin-top:83px"></div>
+	<div class="w3-right"><?php include_once 'search.php';?></div>
 
 	<!-- Top header -->
 	<header class="w3-container w3-xlarge">
 		<p class="w3-left"><?php echo $_GET['brand'];?></p>
+
 		<p class="w3-right">
 			<a href="account.php">
 			<i class="fa fa-user-circle w3-margin-right" aria-hidden="true"></i></a>
 			<a href="shoppingcart.php">
 				<i class="fa fa-shopping-cart w3-margin-right"></i></a>
-			<i class="fa fa-search w3-margin-right"></i>
 			<?php if (isset($_SESSION['userid'])) {?>
 				<a href="logout.php">
 				<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
 			<?php
 			}
 			?>

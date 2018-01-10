@@ -14,19 +14,23 @@
 		</div>
 
 		<div class="w3-col s4">
+			<h4> Language </h4>
+			<p><a href="language.php?lang=de"> Deutsch</a> </p>
+			<p><a href="language.php?lang=en"> English</a> </p>
+
 			<h4>About</h4>
 			<p><a href="#">About us</a></p>
 			<p><a href="#">Support</a></p>
 			<p><a href="#">Payment</a></p>
-			<p><a href="#">Return</a></p>
-			<p><a href="admin/AdminLogin.php"> Admin </a> </p>
+			<h4>Admin</h4>
+			<p><a href="admin/AdminLogin.php"> Login </a> </p>
 		</div>
 
 		<div class="w3-col s4 w3-justify">
 			<h4>Store</h4>
-			<p><i class="fa fa-fw fa-map-marker"></i> Company Name</p>
-			<p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
-			<p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
+			<p><i class="fa fa-fw fa-map-marker"></i> Cars</p>
+			<p><i class="fa fa-fw fa-phone"></i> +41 78 656 21 21</p>
+			<p><i class="fa fa-fw fa-envelope"></i> cars@cars.com</p>
 			<br>
 			<i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
 			<i class="fa fa-instagram w3-hover-opacity w3-large"></i>

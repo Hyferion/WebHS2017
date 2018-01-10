@@ -17,7 +17,7 @@ if(isset($_REQUEST['term'])){
 		$stmt->bind_param("s", $param_term);
 
 		// Set parameters
-		$param_term = $_REQUEST['term'] . '%';
+		$param_term = '%'.$_REQUEST['term'] . '%';
 
 		// Attempt to execute the prepared statement
 		if($stmt->execute()){
@@ -27,7 +27,8 @@ if(isset($_REQUEST['term'])){
 			if($result->num_rows > 0){
 				// Fetch result rows as an associative array
 				while($row = $result->fetch_array(MYSQLI_ASSOC)){
-					echo "<p>" . $row["model"] . "</p>";
+					echo "<p>" .$row["model"] . "</p>";
+					$id = $row['id'];
 				}
 			} else{
 				echo "<p>No matches found</p>";

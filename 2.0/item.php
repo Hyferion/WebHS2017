@@ -1,21 +1,20 @@
 <?php
 session_start();
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-	$idprev = $id - 1;
-	$idnext = $id + 1;
-}
 
 $db = new mysqli("localhost:8889", "root", "test123", "carscars");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
 }
 
-if (!$result = $db->query("SELECT * FROM products WHERE id =" . $id . ";")) {
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+
+if (!$result = $db->query("SELECT * FROM products WHERE color = '' AND id =" . $id . ";")) {
 	echo("There was an error connecting to the db");
 }
 while ($car = $result->fetch_assoc()) {
-	$products[$car['id']] = array(
+	$products = array(
+			'id' => $car ['id'],
 		'brand' => $car ['brand'],
 		'model' => $car ['model'],
 		'price' => $car ['price'],
@@ -25,13 +24,35 @@ while ($car = $result->fetch_assoc()) {
 		'imgRefThree' => $car['imgRefThree']
 	);
 }
-if (!$result = $db->query("SELECT MAX(id) from products")) {
-	echo("There was an error connecting to the db");
-}
-$res = $result->fetch_assoc();
 
-$idmax = $res['MAX(id)'];
-$db->close();
+}
+
+elseif (isset($_POST['search'])) {
+	$model = $_POST['search'];
+
+
+	if (!$result = $db->query("SELECT * FROM products WHERE model ='" . $model . "';")) {
+		echo("There was an error connecting to the db");
+	}
+	while ($car = $result->fetch_assoc()) {
+		$products = array(
+				'id' => $car ['id'],
+			'brand' => $car ['brand'],
+			'model' => $car ['model'],
+			'price' => $car ['price'],
+			'type' => $car['type'],
+			'imgRef' => $car ['imgRef'],
+			'imgRefTwo' => $car['imgRefTwo'],
+			'imgRefThree' => $car['imgRefThree']
+		);
+	}
+	if(is_null($products)){
+		header("Location: ./index.php?".$model."");
+
+	}
+}
+
+
 ?>
 ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -39,10 +60,10 @@ $db->close();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/main.scss">
+
 <style>
 	.w3-sidebar a {
 		font-family: "Roboto", sans-serif
@@ -67,7 +88,7 @@ echo "<div class=\"row mt-20\">
 							<!-- me art lab slider -->
 							<div class='carousel-inner '>
 								<div class='item active'>
-									<img src=" . $products[$id]['imgRef'] . " alt='' data-zoom-image=\"images/shop/single-products/product-1.jpg\" class='w3-border' style=\"padding:4px;width:100%;max-width:400px\"/>
+									<img src=" . $products['imgRef'] . " alt='' data-zoom-image=\"images/shop/single-products/product-1.jpg\" class='w3-border' style=\"padding:4px;width:100%;max-width:400px\"/>
 								</div>
 							</div>
 						</div>
@@ -77,14 +98,14 @@ echo "<div class=\"row mt-20\">
 			</div>
 			<div class=\"col-md-7\">
 				<div class=\"single-product-details\">
-					<h2>" . $products[$id]['brand'] . " " . $products[$id]['model'] . "</h2>
-					<p class=\"product-price\">" . $products[$id]['price'] . '$' . "</p>
+					<h2>" . $products['brand'] . " " . $products['model'] . "</h2>
+					<p class=\"product-price\">" . $products['price'] . '$' . "</p>
 
 					<p class=\"product-description mt-20\">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ipsum dicta quod, quia doloremque aut deserunt commodi quis. Totam a consequatur beatae nostrum, earum consequuntur? Eveniet consequatur ipsum dicta recusandae.
 					</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, velit, sunt temporibus, nulla accusamus similique sapiente tempora, at atque cumque assumenda minus asperiores est esse sequi dolore magnam. Debitis, explicabo.</p>
-					<form action=\"shoppingcart.php?item_id=" . $id . "\" method=\"post\">
+					<form action=\"shoppingcart.php?item_id=" . $products['id'] . "\" method=\"post\">
 					
 <div class=\"custom-radios\">
   <div>
@@ -127,7 +148,7 @@ echo "<div class=\"row mt-20\">
 					<div class=\"product-quantity\">
 						<span>Quantity:</span>
 						<div class=\"product-quantity-slider\">
-							<input id=\"product-quantity\" type=\"number\" value=\"0\" name=\"quantity\">
+							<input id=\"product-quantity\" type=\"number\" value=\"1\" name=\"quantity\">
 						</div>
 					</div>
 					<input type=\"submit\" value=\"Add to Cart\" class=\"w3-btn w3-black\" style='margin:2%';>
@@ -136,8 +157,8 @@ echo "<div class=\"row mt-20\">
 						<span>Categories:</span>
 						<ul>
 							<li><a href=\"#\">Products</a></li>
-							<li><a href=\"index.php?type=" . $products[$id]['type'] ."\">" . $products[$id]['type'] . "</a></li>
-							<li><a href=\"index.php?brand=" . $products[$id]['brand'] ."\">" . $products[$id]['brand'] . "</a></li>
+							<li><a href=\"index.php?type=" . $products['type'] ."\">" . $products['type'] . "</a></li>
+							<li><a href=\"index.php?brand=" . $products['brand'] ."\">" . $products['brand'] . "</a></li>
 						</ul>
 					</div>
 				

@@ -42,7 +42,7 @@ if(isset($_GET['add'])){
 if(isset($_GET['added'])){
 	$brand = $_POST['brand'];
 	$model = $_POST['model'];
-	$model = $_POST['description'];
+	$description = $_POST['description'];
 	$price = $_POST['price'];
 	$type = $_POST['type'];
 	$imgRef = $_POST['imgRef'];

@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+$lang = $_SESSION['lang'];
+
+
 if (isset($_GET['brand'])) {
 	switch ($_GET['brand']) {
 		case 'BMW':
@@ -119,10 +122,12 @@ $db->close();
 <div class="w3-display-container w3-container">
 	<img src="../src/background.jpg" alt="" style="width:100%">
 	<div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
-		<h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
-		<h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
+		<h1 class="w3-jumbo w3-hide-small"><?php $txt = array('en' => 'New Models',
+				'de' => 'Neue Modelle'); echo $txt[$lang];?></h1>
+		<h1 class="w3-hide-large w3-hide-medium">Mustang GT</h1>
 		<h1 class="w3-hide-small">2018</h1>
-		<p><a href="#cars" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+		<p><a href="#cars" class="w3-button w3-black w3-padding-large w3-large"><?php $txt = array('en' => 'Shop Now!',
+					'de' => 'Kaufen!'); echo $txt[$lang];?></a></p>
 	</div>
 </div>
 <?php }?>
@@ -155,8 +160,10 @@ $db->close();
 	?>
 	<!-- Subscribe section -->
 	<div class="w3-container w3-black w3-padding-32">
-		<h1>Subscribe</h1>
-		<p>To get special offers and VIP treatment:</p>
+		<h1><?php $txt = array('en' => 'Subscribe',
+				'de' => 'Abonnieren'); echo $txt[$lang];?></h1>
+		<p><?php $txt = array('en' => 'To get special offers:',
+				'de' => 'Um einzigartige Angebote zu erhalten schreiben Sie sich in unserem Newsletter ein'); echo $txt[$lang];?></p>
 		<p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
 		<button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
 	</div>
@@ -188,7 +195,7 @@ include_once "footer.php";
 		}
 	}
 
-	// Click on the "Jeans" link on page load to open the accordion for demo purposes
+
 	document.getElementById("myBtn").click();
 
 
