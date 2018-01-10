@@ -1,5 +1,5 @@
 <?php
-require_once '../cart.php';
+require_once './cart.php';
 // Start session
 session_start();
 // Create cart on first request

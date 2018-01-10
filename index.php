@@ -3,6 +3,8 @@ session_start();
 
 $lang = $_SESSION['lang'];
 
+$_SESSION['lang'] = 'en';
+
 
 if (isset($_GET['brand'])) {
 	switch ($_GET['brand']) {
@@ -34,7 +36,6 @@ if (isset($_GET['type'])) {
 		case 'SUV':
 			$sorttype = 'SUV';
 			break;
-
 		case 'Limousine':
 			$sorttype = 'Limousine';
 			break;

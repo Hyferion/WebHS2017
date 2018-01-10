@@ -80,7 +80,7 @@ while ($user = $result->fetch_assoc()) {
 	);
 }
 
-echo "<a href='./adminarea.php'> Back </a>";
+echo "<a href='adminarea.php'> Back </a>";
 
 if($edit) {
 
