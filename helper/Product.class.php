@@ -115,7 +115,7 @@ class Product {
 
 	static public function getProducts() {
 		$products = array();
-		$res = DB::doQuery("SELECT * FROM PRODUCTS WHERE color = ''");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE color = ''");
 		if ($res) {
 			while ($product = $res->fetch_object(get_class())) {
 				$products[] = $product;
@@ -125,7 +125,7 @@ class Product {
 	}
 	static public function getALLProducts() {
 		$products = array();
-		$res = DB::doQuery("SELECT * FROM PRODUCTS");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products");
 		if ($res) {
 			while ($product = $res->fetch_object(get_class())) {
 				$products[] = $product;
@@ -136,7 +136,7 @@ class Product {
 
 	static public function getProductsbyIds($ids) {
 		$products = array();
-		$res = DB::doQuery("SELECT * FROM products WHERE id IN (" . implode(',', $ids) . ")");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE id IN (" . implode(',', $ids) . ")");
 		if ($res) {
 			while ($product = $res->fetch_object(get_class())) {
 				$products[] = $product;
@@ -149,7 +149,7 @@ class Product {
 
 	static public function getProductsbyBrand($brand) {
 		$products = array();
-		$res = DB::doQuery("SELECT * FROM PRODUCTS WHERE color = '' and brand = '$brand'");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE color = '' and brand = '$brand'");
 		if ($res) {
 			while ($product = $res->fetch_object(get_class())) {
 				$products[] = $product;
@@ -160,7 +160,7 @@ class Product {
 
 	static public function getProductsbyType($type) {
 		$products = array();
-		$res = DB::doQuery("SELECT * FROM PRODUCTS WHERE color = '' and type = '$type'");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE color = '' and type = '$type'");
 		if ($res) {
 			while ($product = $res->fetch_object(get_class())) {
 				$products[] = $product;
@@ -171,7 +171,7 @@ class Product {
 
 
 	static public function getProductbyModel($model) {
-		$res = DB::doQuery("SELECT * FROM PRODUCTS WHERE color = '' and model = '$model'");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE color = '' and model = '$model'");
 		if ($res) {
 			if ($product = $res->fetch_object(get_class())) {
 				return $product;
@@ -183,7 +183,7 @@ class Product {
 
 	static public function getProductById($id) {
 		$id = (int) $id;
-		$res = DB::doQuery("SELECT * FROM products WHERE id = $id");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE id = $id");
 		if ($res) {
 			if ($product = $res->fetch_object(get_class())) {
 				return $product;
@@ -195,7 +195,7 @@ class Product {
 
 	static public function getProductByGroupIdAndColor($groupid,$color) {
 		$groupid = (int) $groupid;
-		$res = DB::doQuery("SELECT * FROM products WHERE productgroupid = '" . $groupid . "' and color = '" . $color . "'");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.products WHERE productgroupid = '" . $groupid . "' and color = '" . $color . "'");
 		if ($res) {
 			if ($product = $res->fetch_object(get_class())) {
 				return $product;
@@ -206,7 +206,7 @@ class Product {
 
 	static public function delete($id) {
 		$id = (int) $id;
-		$res = DB::doQuery("DELETE FROM products WHERE id = $id");
+		$res = DB::doQuery("DELETE FROM CARSCARS.products WHERE id = $id");
 		return $res != null;
 	}
 

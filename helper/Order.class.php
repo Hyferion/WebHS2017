@@ -51,7 +51,7 @@ class Order {
 
 	static public function getOrders() {
 		$orders = array();
-		$res = DB::doQuery("SELECT * FROM orders");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.orders");
 		if ($res) {
 			while ($order = $res->fetch_object(get_class())) {
 				$orders[] = $order;
@@ -64,7 +64,7 @@ class Order {
 
 	static public function getLastOrder($usrid) {
 		$orders = array();
-		$res = DB::doQuery("Select * from orders where usrid = " . $usrid . " order by created_at desc limit 1");
+		$res = DB::doQuery("Select * from CARSCARS.orders where usrid = " . $usrid . " order by created_at desc limit 1");
 		if ($res) {
 			while ($order = $res->fetch_object(get_class())) {
 				$orders[] = $order;

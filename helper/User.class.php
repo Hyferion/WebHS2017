@@ -125,7 +125,7 @@ class User{
 
 	static public function getUsers() {
 		$users = array();
-		$res = DB::doQuery("SELECT * FROM users");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.users");
 		if ($res) {
 			while ($user = $res->fetch_object(get_class())) {
 				$users[] = $user;
@@ -136,7 +136,7 @@ class User{
 
 	static public function getUserbyId($id) {
 		$id = (int) $id;
-		$res = DB::doQuery("SELECT * FROM users WHERE id = $id");
+		$res = DB::doQuery("SELECT * FROM CARSCARS.users WHERE id = $id");
 		if ($res) {
 			if ($user = $res->fetch_object(get_class())) {
 				return $user;

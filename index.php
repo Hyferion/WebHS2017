@@ -12,7 +12,6 @@ $lang = $_SESSION['lang'];
 $_SESSION['lang'] = 'en';
 
 $products = Product::getProducts();
-
 if (isset($_GET['brand'])) {
 	$brand = $_GET['brand'];
 
