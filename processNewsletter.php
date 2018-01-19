@@ -3,7 +3,7 @@
  * Processes the newsletter registration
  */
 require_once 'autoloader.php';
-if (!DB::create('localhost:8889', 'root', 'test123', 'carscars')) {
+if (!DB::create('localhost', 'root', 'test123', 'CARSCARS')) {
 	die("Unable to connect to database [".DB::getInstance()->connect_error."]");
 }
 
