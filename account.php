@@ -60,6 +60,7 @@ $db->close();
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="script" href="./js/script.js">
+<script src="./js/sidebar.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	.w3-sidebar a {
@@ -152,3 +153,27 @@ include_once "./templates/header.php"; ?>
 <!-- End page content -->	</div>
 </body>
 </html>
+<script>
+	// Accordion
+	function myAccFunc() {
+		var x = document.getElementById("demoAcc");
+		if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+		} else {
+			x.className = x.className.replace(" w3-show", "");
+		}
+	}
+
+	document.getElementById("myBtn").click();
+
+
+	// Script to open and close sidebar
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";
+		document.getElementById("myOverlay").style.display = "block";
+	}
+
+	function w3_close() {
+		document.getElementById("mySidebar").style.display = "none";
+		document.getElementById("myOverlay").style.display = "none";
+	}</script>

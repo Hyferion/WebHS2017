@@ -35,6 +35,7 @@ if (isset($_GET['type'])) {
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="script" href="./js/script.js">
+<script src="./js/sidebar.js"></script>
 <style>
 	.w3-sidebar a {
 		font-family: "Roboto", sans-serif
@@ -124,3 +125,5 @@ include_once "./templates/footer.php";
 </div>
 </body>
 </html>
+
+
