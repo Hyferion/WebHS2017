@@ -5,7 +5,7 @@ if (isset($_SESSION['adminid'])){
 	header("Location: ./adminarea.php");
 }
 
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
+$db = new mysqli("localhost", "root", "test123", "CARSCARS");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
 }
