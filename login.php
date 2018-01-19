@@ -3,7 +3,7 @@ session_start();
 if (isset($_GET['registered'])){
 	$registered = true;
 }
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
+$db = new mysqli("localhost", "root", "test123", "carscars");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
 }
