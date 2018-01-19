@@ -1,17 +1,20 @@
 <?php
 session_start();
-
 if (isset($_GET['registered'])){
 	$registered = true;
 }
-
 $db = new mysqli("localhost:8889", "root", "test123", "carscars");
 if ($db->connect_error) {
 	echo("Unable to connect to the database" . $db->connect_error);
 }
-
+	$email= "";
 if(isset($_GET['login'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email = $_POST['email'];
+	$email = trim($email);
+	$email = stripslashes($email);
+	$email = htmlspecialchars($email);
+}
 	$passwort = $_POST['passwort'];
 
 	if (!$result = $db->query("SELECT * FROM users WHERE email ='".$email."';")){
@@ -40,6 +43,7 @@ if(isset($_GET['login'])) {
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="script" href="./js/script.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	.w3-sidebar a {
@@ -52,9 +56,9 @@ if(isset($_GET['login'])) {
 </style>
 <body class="w3-content" style="max-width:1200px">
 <!-- Sidebar/menu -->
-<?php include_once 'sidebar.php' ?>
+<?php include_once './templates/sidebar.php' ?>
 
-<?php include_once 'header.php';
+<?php include_once './templates/header.php';
 
 if (!$registered) {
 	?>
@@ -73,10 +77,10 @@ else {
 ?>
 <form class="w3-container" action="?login=1" method="post">
 	<label  class="w3-text-black"><b>Email:</b></label>
-	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="email" name="email">
+	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="email" name="email" required>
 
 	<div style="margin-top:3%"><label  class="w3-text-black"><b>Password:</b></label></div>
-	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="password" name="passwort">
+	<input style="margin-top:3%" class="w3-input w3-border w3-light-grey" type="password" name="passwort" required>
 
 	<input style="margin-top:3%" class="w3-btn w3-black" type="submit" value="Login">
 	<a style="margin-top:3%" href="registration.php" class="w3-btn w3-black"> Register </a>
@@ -84,33 +88,7 @@ else {
 
 
 <?php
-include_once "footer.php";
+include_once "./templates/footer.php";
 ?>
-<script>
-	// Accordion
-	function myAccFunc() {
-		var x = document.getElementById("demoAcc");
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		} else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
-
-	// Click on the "Jeans" link on page load to open the accordion for demo purposes
-	document.getElementById("myBtn").click();
-
-
-	// Script to open and close sidebar
-	function w3_open() {
-		document.getElementById("mySidebar").style.display = "block";
-		document.getElementById("myOverlay").style.display = "block";
-	}
-
-	function w3_close() {
-		document.getElementById("mySidebar").style.display = "none";
-		document.getElementById("myOverlay").style.display = "none";
-	}
-</script>
 </body>
 </html>

@@ -1,58 +1,26 @@
 <?php
 session_start();
 
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
-if ($db->connect_error) {
-	echo("Unable to connect to the database" . $db->connect_error);
+require_once 'autoloader.php';
+if (!DB::create('localhost:8889', 'root', 'test123', 'carscars')) {
+	die("Unable to connect to database [".DB::getInstance()->connect_error."]");
 }
+
 
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-
-if (!$result = $db->query("SELECT * FROM products WHERE color = '' AND id =" . $id . ";")) {
-	echo("There was an error connecting to the db");
-}
-while ($car = $result->fetch_assoc()) {
-	$products = array(
-			'id' => $car ['id'],
-		'brand' => $car ['brand'],
-		'model' => $car ['model'],
-		'price' => $car ['price'],
-		'type' => $car['type'],
-		'imgRef' => $car ['imgRef'],
-		'imgRefTwo' => $car['imgRefTwo'],
-		'imgRefThree' => $car['imgRefThree']
-	);
-}
-
+	$product = Product::getProductById($id);
 }
 
 elseif (isset($_POST['search'])) {
 	$model = $_POST['search'];
+	$product = Product::getProductbyModel($model);
 
-
-	if (!$result = $db->query("SELECT * FROM products WHERE model ='" . $model . "';")) {
-		echo("There was an error connecting to the db");
-	}
-	while ($car = $result->fetch_assoc()) {
-		$products = array(
-				'id' => $car ['id'],
-			'brand' => $car ['brand'],
-			'model' => $car ['model'],
-			'price' => $car ['price'],
-			'type' => $car['type'],
-			'imgRef' => $car ['imgRef'],
-			'imgRefTwo' => $car['imgRefTwo'],
-			'imgRefThree' => $car['imgRefThree']
-		);
-	}
-	if(is_null($products)){
+}
+	if(is_null($product)){
 		header("Location: ./index.php?".$model."");
 
 	}
-}
-
-
 ?>
 ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -76,10 +44,10 @@ elseif (isset($_POST['search'])) {
 <body class="w3-content" style="max-width:1200px">
 <?php
 
-include_once 'sidebar.php';
+include_once './templates/sidebar.php';
 
 ?><?php
-include_once 'header.php';
+include_once './templates/header.php';
 echo "<div class=\"row mt-20\">
 			<div class=\"col-md-5\">
 				<div class=\"single-product-slider\">
@@ -88,7 +56,7 @@ echo "<div class=\"row mt-20\">
 							<!-- me art lab slider -->
 							<div class='carousel-inner '>
 								<div class='item active'>
-									<img src=" . $products['imgRef'] . " alt='' data-zoom-image=\"images/shop/single-products/product-1.jpg\" class='w3-border' style=\"padding:4px;width:100%;max-width:400px\"/>
+									<img src=" . $product->getImgRef() . " alt=''  class='w3-border' style=\"padding:4px;width:100%;max-width:400px\"/>
 								</div>
 							</div>
 						</div>
@@ -98,14 +66,14 @@ echo "<div class=\"row mt-20\">
 			</div>
 			<div class=\"col-md-7\">
 				<div class=\"single-product-details\">
-					<h2>" . $products['brand'] . " " . $products['model'] . "</h2>
-					<p class=\"product-price\">" . $products['price'] . '$' . "</p>
+					<h2>" . $product->getBrand() . " " . $product->getModel() . "</h2>
+					<p class=\"product-price\">" . $product->getPrice(). '$' . "</p>
 
 					<p class=\"product-description mt-20\">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ipsum dicta quod, quia doloremque aut deserunt commodi quis. Totam a consequatur beatae nostrum, earum consequuntur? Eveniet consequatur ipsum dicta recusandae.
 					</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, velit, sunt temporibus, nulla accusamus similique sapiente tempora, at atque cumque assumenda minus asperiores est esse sequi dolore magnam. Debitis, explicabo.</p>
-					<form action=\"shoppingcart.php?item_id=" . $products['id'] . "\" method=\"post\">
+					<form action=\"shoppingcart.php?item_id=" . $product->getId() . "\" method=\"post\">
 					
 <div class=\"custom-radios\">
   <div>
@@ -157,8 +125,8 @@ echo "<div class=\"row mt-20\">
 						<span>Categories:</span>
 						<ul>
 							<li><a href=\"#\">Products</a></li>
-							<li><a href=\"index.php?type=" . $products['type'] ."\">" . $products['type'] . "</a></li>
-							<li><a href=\"index.php?brand=" . $products['brand'] ."\">" . $products['brand'] . "</a></li>
+							<li><a href=\"index.php?type=" . $product->getType() ."\">" . $product->getType() . "</a></li>
+							<li><a href=\"index.php?brand=" . $product->getBrand() ."\">" . $product->getBrand() . "</a></li>
 						</ul>
 					</div>
 				
@@ -166,22 +134,10 @@ echo "<div class=\"row mt-20\">
 			</div>
 		</div>
 		";
-include_once "footer.php";
+include_once "./templates/footer.php";
 ?>
 </body>
 </html>
-<script>
-	// Script to open and close sidebar
-	function w3_open() {
-		document.getElementById("mySidebar").style.display = "block";
-		document.getElementById("myOverlay").style.display = "block";
-	}
-
-	function w3_close() {
-		document.getElementById("mySidebar").style.display = "none";
-		document.getElementById("myOverlay").style.display = "none";
-	}
-</script>
 
 
 

@@ -1,99 +1,33 @@
 <?php
 session_start();
 
+require_once 'autoloader.php';
+
+if (!DB::create('localhost:8889', 'root', 'test123', 'carscars')) {
+	die("Unable to connect to database [".DB::getInstance()->connect_error."]");
+}
+
 $lang = $_SESSION['lang'];
 
 $_SESSION['lang'] = 'en';
 
+$products = Product::getProducts();
 
 if (isset($_GET['brand'])) {
-	switch ($_GET['brand']) {
-		case 'BMW':
-			$sort = 'BMW';
-			break;
-		case 'VW':
-			$sort = 'VW';
-			break;
-		case 'Audi':
-			$sort = 'AUDI';
-			break;
-		case 'Dacia':
-			$sort = 'Dacia';
-			break;
-		case 'Porsche':
-			$sort = 'Porsche';
-			break;
-		case 'Ford':
-			$sort = 'Ford';
-			break;
-		case 'Mercedes Benz':
-			$sort = 'Mercedes Benz';
-			break;
-	}
+	$brand = $_GET['brand'];
+
+ $products = Product::getProductsbyBrand($brand);
 }
+
 if (isset($_GET['type'])) {
-	switch ($_GET['type']) {
-		case 'SUV':
-			$sorttype = 'SUV';
-			break;
-		case 'Limousine':
-			$sorttype = 'Limousine';
-			break;
-		case 'Kombi':
-			$sorttype = 'Kombi';
-			break;
-		case 'Cabriolet':
-			$sorttype = 'Cabriolet';
-			break;
-		case 'Sport':
-			$sorttype = 'Sport';
-			break;
-	}
+	$type = $_GET['type'];
+	$products = Product::getProductsbyType($type);
 }
 
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
-if ($db->connect_error) {
-	echo("Unable to connect to the database" . $db->connect_error);
-}
 
-if (!$result = $db->query("SELECT * FROM products WHERE color = '' ;")) {
-	echo("There was an error connecting to the db");
-}
-while ($car = $result->fetch_assoc()) {
-	if ($sort != NULL) {
-		if ($car['brand'] == $sort) {
-			$products[$car['id']] = array(
-				'brand' => $car ['brand'],
-				'model' => $car ['model'],
-				'price' => $car ['price'],
-				'type' => $car['type'],
-				'imgRef' => $car['imgRef']
-			);
-		}
-	} elseif ($sorttype != NULL) {
-		if ($car['type'] == $sorttype) {
-			$products[$car['id']] = array(
-				'brand' => $car ['brand'],
-				'model' => $car ['model'],
-				'price' => $car ['price'],
-				'type' => $car['type'],
-				'imgRef' => $car['imgRef']
-			);
-		}
-	} else {
-			$products[$car['id']] = array(
-				'brand' => $car ['brand'],
-				'model' => $car ['model'],
-				'price' => $car ['price'],
-				'type' => $car['type'],
-				'imgRef' => $car['imgRef']
-			);
-	}
-}
-$db->close();
 ?>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <title>Cars</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,6 +35,7 @@ $db->close();
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="script" href="./js/script.js">
 <style>
 	.w3-sidebar a {
 		font-family: "Roboto", sans-serif
@@ -112,9 +47,9 @@ $db->close();
 </style>
 <body class="w3-content" style="max-width:1200px">
 <!-- Sidebar/menu -->
-<?php include_once 'sidebar.php' ?>
+<?php include_once './templates/sidebar.php' ?>
 
-<?php include_once 'header.php'; ?>
+<?php include_once './templates/header.php'; ?>
 
 <?php if (!isset($_GET['brand'])){
 
@@ -139,18 +74,18 @@ $db->close();
 <div class="w3-row w3-grayscale">
 	<?php
 
-	foreach ($products as $id => $product) {
+	foreach ($products as $product) {
 		echo " <div class='w3-col l3 s6'>
 		<div class='w3-container'>
 			<div class='w3-display-container'>
-				<img src='".$product['imgRef']."' style='width:100%'>
+				<img src='".$product->getImgRef()."' style='width:100%'>
 				<span class='w3-tag w3-display-topleft'>Sale</span>
 				<div class='w3-display-middle w3-display-hover'>
-					<a href='item.php?id=" . $id . "' class='w3-button w3-black'>Buy now <i class='fa fa-shopping-cart'></i></a>
+					<a href='item.php?id=" . $product->getId() . "' class='w3-button w3-black'>Buy now <i class='fa fa-shopping-cart'></i></a>
 				</div>
 			</div>
 		<a style='text-decoration:none;' href='item.php?id=" . $id . "'>
-		<p>" . $product['brand'] . ' ' . $product['model'] . "<br><b class='w3-text-red'>" . $product['price'] . ' $' . "</b></p>
+		<p>" . $product->getBrand(). ' ' . $product->getModel() . "<br><b class='w3-text-red'>" . $product->getPrice() . ' $' . "</b></p>
 		</a>
 		</div>
 	</div>";
@@ -165,12 +100,13 @@ $db->close();
 				'de' => 'Abonnieren'); echo $txt[$lang];?></h1>
 		<p><?php $txt = array('en' => 'To get special offers:',
 				'de' => 'Um einzigartige Angebote zu erhalten schreiben Sie sich in unserem Newsletter ein'); echo $txt[$lang];?></p>
-		<p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
-		<button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+		<form action="processNewsletter.php" method="post"><p><input class="w3-input w3-border" required type="email" placeholder="Enter e-mail" name="email" style="width:100%"></p>
+			<button class="w3-btn w3-red"> Subscribe! </button>
+		</form>
 	</div>
 	<?php
 }
-include_once "footer.php";
+include_once "./templates/footer.php";
 ?>
 <!-- End page content --></div>
 <!-- Newsletter Modal -->
@@ -180,36 +116,12 @@ include_once "footer.php";
 			<i onclick="document.getElementById('newsletter').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
 			<h2 class="w3-wide">NEWSLETTER</h2>
 			<p>Join our mailing list to receive updates on new arrivals and special offers.</p>
-			<p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
-			<button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('newsletter').style.display='none'">Subscribe</button>
+			<form action="./processNewsletter.php" method="post">
+			<p><input class="w3-input w3-border" type="email" placeholder="Enter e-mail" required name="email"></p>
+				<button class="w3-btn w3-red"> Subscribe! </button>
+			</form>
 		</div>
 	</div>
 </div>
-<script>
-	// Accordion
-	function myAccFunc() {
-		var x = document.getElementById("demoAcc");
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		} else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
-
-
-	document.getElementById("myBtn").click();
-
-
-	// Script to open and close sidebar
-	function w3_open() {
-		document.getElementById("mySidebar").style.display = "block";
-		document.getElementById("myOverlay").style.display = "block";
-	}
-
-	function w3_close() {
-		document.getElementById("mySidebar").style.display = "none";
-		document.getElementById("myOverlay").style.display = "none";
-	}
-</script>
 </body>
 </html>

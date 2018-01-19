@@ -57,15 +57,9 @@ inner join order_items on orders.id = order_items.orderid
 				);
 			}
 		}
-
-
-
 	}
-
-
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <title>Cars</title>
@@ -111,8 +105,8 @@ inner join order_items on orders.id = order_items.orderid
 </style>
 <body class="w3-content" style="max-width:1200px">
 <?php
-include_once 'sidebar.php';
-include_once 'header.php';
+include_once './templates/sidebar.php';
+include_once './templates/header.php';
 
 
 foreach ($cars as $car){
@@ -185,39 +179,10 @@ echo "
 		";
 
 ?>
-
-
-
 <div style="margin-top: 5%;">
-<?php include_once "footer.php" ?>
+<?php include_once "./templates/footer.php" ?>
 </div>
 <!-- End page content -->	</div>
-<script>
-	// Accordion
-	function myAccFunc() {
-		var x = document.getElementById("demoAcc");
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		} else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
-
-	// Click on the "Jeans" link on page load to open the accordion for demo purposes
-	document.getElementById("myBtn").click();
-
-
-	// Script to open and close sidebar
-	function w3_open() {
-		document.getElementById("mySidebar").style.display = "block";
-		document.getElementById("myOverlay").style.display = "block";
-	}
-
-	function w3_close() {
-		document.getElementById("mySidebar").style.display = "none";
-		document.getElementById("myOverlay").style.display = "none";
-	}
-</script>
 </body>
 </html>
 

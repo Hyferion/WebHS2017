@@ -14,12 +14,12 @@ if (isset($_GET['edit'])){
 }
 
 if(isset($_GET['edited'])){
-	$email = $_POST['email'];
-	$surname = $_POST['surname'];
-	$lastname = $_POST['lastname'];
-	$adress = $_POST['adress'];
-	$zip = $_POST['zip'];
-	$city = $_POST['city'];
+	$email = test_input($_POST['email']);
+	$surname = test_input($_POST['surname']);
+	$lastname = test_input($_POST['lastname']);
+	$adress = test_input($_POST['adress']);
+	$zip = test_input($_POST['zip']);
+	$city = test_input($_POST['city']);
 
 
 
@@ -27,10 +27,6 @@ if(isset($_GET['edited'])){
 		echo("There was an error connecting to the db");
 	}
 }
-
-
-
-
 
 if (!$result = $db->query("SELECT email,vorname,nachname,adress,city,zip FROM users WHERE id =" . $usrid . ";")) {
 	echo("There was an error connecting to the db");
@@ -46,6 +42,12 @@ while ($orders = $result->fetch_assoc()) {
 		'total' => $orders ['total']
 	);
 }
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
 $db->close();
 
 ?>
@@ -57,6 +59,7 @@ $db->close();
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="script" href="./js/script.js">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	.w3-sidebar a {
@@ -68,9 +71,9 @@ $db->close();
 	}
 </style>
 <body class="w3-content" style="max-width:1200px">
-<?php include_once "sidebar.php" ?>
+<?php include_once "./templates/sidebar.php" ?>
 <?php
-include_once "header.php"; ?>
+include_once "./templates/header.php"; ?>
 <!-- Product grid -->
 <div class="w3-row w3-grayscale">
 	<?php
@@ -145,33 +148,7 @@ include_once "header.php"; ?>
 	";
 		?>
 </div>
-<?php include_once "footer.php" ?>
+<?php include_once "./templates/footer.php" ?>
 <!-- End page content -->	</div>
-<script>
-	// Accordion
-	function myAccFunc() {
-		var x = document.getElementById("demoAcc");
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		} else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
-
-	// Click on the "Jeans" link on page load to open the accordion for demo purposes
-	document.getElementById("myBtn").click();
-
-
-	// Script to open and close sidebar
-	function w3_open() {
-		document.getElementById("mySidebar").style.display = "block";
-		document.getElementById("myOverlay").style.display = "block";
-	}
-
-	function w3_close() {
-		document.getElementById("mySidebar").style.display = "none";
-		document.getElementById("myOverlay").style.display = "none";
-	}
-</script>
 </body>
 </html>

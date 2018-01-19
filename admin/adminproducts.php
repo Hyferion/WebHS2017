@@ -1,22 +1,21 @@
 <?php
-$db = new mysqli("localhost:8889", "root", "test123", "carscars");
-if ($db->connect_error) {
-	echo("Unable to connect to the database" . $db->connect_error);
+require_once '../autoloader.php';
+if (!DB::create('localhost:8889', 'root', 'test123', 'carscars')) {
+	die("Unable to connect to database [".DB::getInstance()->connect_error."]");
 }
 
 //DELETE ACTION
 if (isset($_GET['delete'])){
 	$id = $_GET['delete'];
 
-	if(!$result = $db->query("DELETE from products where id = ".$id."")) {
-		echo("There was an error connecting to the db");
-	}
+	Product::delete($id);
 	header("Location: ./adminproducts.php");
 }
 
 //EDIT VIEW
 if (isset($_GET['edit'])){
 	$id = $_GET['edit'];
+	$product = Product::getProductById($id);
 	$edit = true;
 }
 
@@ -29,9 +28,7 @@ if(isset($_GET['edited'])){
 	$imgRef = $_POST['imgRef'];
 
 
-	if (!$result = $db->query("UPDATE products set brand = '$brand', model = '$model' , price = '$price', type = '$type', imgRef = '$imgRef' WHERE id = $id")) {
-		echo("There was an error connecting to the db");
-	}
+	DB::doQuery("UPDATE products set brand = '$brand', model = '$model' , price = '$price', type = '$type', imgRef = '$imgRef' WHERE id = $id");
 }
 
 //ADD VIEW
@@ -47,50 +44,25 @@ if(isset($_GET['added'])){
 	$type = $_POST['type'];
 	$imgRef = $_POST['imgRef'];
 
-	if (!$result = $db->query("SELECT MAX(id) from products")) {
-		echo("There was an error connecting to the db");
-	}
-	$res = $result->fetch_assoc();
-
-	$idmax = $res['MAX(id)'] + 1;
-
-	if (!$result = $db->query("INSERT INTO products (brand, model,description,price,type,imgRef) VALUES ('$brand','$model','$description','$price','$type','$imgRef')")) {
-		echo("There was an error connecting to the db");
-	}
+	DB::doQuery("INSERT INTO products (brand, model,description,price,type,imgRef) VALUES ('$brand','$model','$description','$price','$type','$imgRef')");
 }
-
-
-
 
 
 //STANDARD VIEW
-if (!$result = $db->query("SELECT * FROM products;")) {
-	echo("There was an error connecting to the db");
-}
+$products = Product::getALLProducts();
 
-while ($car = $result->fetch_assoc()) {
-	$products[$car['id']] = array(
-		'brand' => $car ['brand'],
-		'model' => $car ['model'],
-		'description' => $car['description'],
-		'price' => $car ['price'],
-		'type' => $car['type'],
-		'imgRef' => $car['imgRef'],
-		'color' => $car['color'],
-	);
-}
 
 echo "<a href='./adminarea.php'> Back </a>";
 
 if($edit) {
 
 	echo "<form action=\"?edited=".$id."\" method=\"post\">
-		Brand:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$products[$id]['brand']."\" name=\"brand\"><br>
-		 Model: <br><input type=\"text\" size=\"40\" maxlength=\"250\" name=\"model\" value=\" ".$products[$id]['model']."\"><br>
-		 Description:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$products[$id]['description']."\" name=\"description\"><br>
-		 Price: <br> <input type=\"text\" size=\"40\" maxlength=\"250\" name=\"price\" value=\" ".$products[$id]['price']." \"><br>
-		 Type: <br><input type=\"text\" size=\"40\" name=\"type\" value=\" ".$products[$id]['type']."\"> <br>
-		 ImgRef: <br><input type=\"text\" size=\"40\" maxlength=\"250\" name=\"imgRef\" value=\" ".$products[$id]['imgRef']."\"> <br> 
+		Brand:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$product->getBrand()."\" name=\"brand\"><br>
+		 Model: <br><input type=\"text\" size=\"40\" maxlength=\"250\" name=\"model\" value=\" ".$product->getModel()."\"><br>
+		 Description:<br> <input type=\"text\" size=\"40\" maxlength=\"250\" value=\"".$product->getDescription()."\" name=\"description\"><br>
+		 Price: <br> <input type=\"text\" size=\"40\" maxlength=\"250\" name=\"price\" value=\" ".$product->getPrice()." \"><br>
+		 Type: <br><input type=\"text\" size=\"40\" name=\"type\" value=\" ".$product->getType()."\"> <br>
+		 ImgRef: <br><input type=\"text\" size=\"40\" maxlength=\"250\" name=\"imgRef\" value=\" ".$product->getImgRef()."\"> <br> 
 		 <input type=\"submit\" value=\"Abschicken\">
 	</form>";
 }
@@ -127,13 +99,13 @@ echo "
 
 		echo "<tr>
 			<td>".$id."</td>
-			<td>".$product['brand']."</td>
-			<td>".$product['model']."</td>
-			<td>".$product['description']."</td>
-			<td>".$product['type']."</td>
-			<td>".$product['price']."</td>
-			<td>".$product['color']."</td>
-			<td>".$product['imgRef']."</td>
+			<td>".$product->getBrand()."</td>
+			<td>".$product->getModel()."</td>
+			<td>".$product->getDescription()."</td>
+			<td>".$product->getType()."</td>
+			<td>".$product->getPrice()."</td>
+			<td>".$product->getColor()."</td>
+			<td>".$product->getImgRef()."</td>
 			<td><a href='adminproducts.php?delete=".$id."'> Delete</a> </td>
 			<td><a href='adminproducts.php?edit=".$id."'> Edit</a> </td>
 		</tr>
